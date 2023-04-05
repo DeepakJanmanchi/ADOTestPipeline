@@ -81,7 +81,7 @@ stages:
             steps:
             - task: ServiceNow-DevOps-Server-Artifact-Registration@1
               inputs:
-                connectedServiceName: 'ADO_S_CONNECTION1'
+                connectedServiceName: 'DeepakDefectRoy'
                 artifactRegistrationPayload: |
                   {
                      "artifacts": [
@@ -106,7 +106,7 @@ stages:
                 artifactToolIdExists: false
             - task: ServiceNow-DevOps-Server-Package-Registration@1
               inputs:
-                connectedServiceName: 'ADO_S_CONNECTION1'
+                connectedServiceName: 'DeepakDefectRoy'
                 packageRegistrationPayload: |
                   {
                       "name": "pkg$(build.buildId)",
@@ -134,7 +134,7 @@ stages:
         steps:
         - task: ServiceNow-DevOps-Server-Change-Acceleration@1
           inputs:
-            connectedServiceName: 'ADO_S_CONNECTION1'
+            connectedServiceName: 'DeepakDefectRoy'
             changeRequestDetails: |
               {
                 "attributes": {
