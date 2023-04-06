@@ -146,7 +146,7 @@ stages:
                   "cab_required": true,
                   "work_notes": "test work"
                 },
-                "setCloseCode": true
+                "setCloseCode": false
               }
   - stage: Deployment
     displayName: Deployment
