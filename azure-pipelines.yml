@@ -126,10 +126,10 @@ stages:
                       "branchName":"$(build.sourceBranchName)"
                   }
                 artifactToolIdExists: false
-  - stage: Deploy
-    displayName: Deploy
+  - stage: Approval
+    displayName: Approval
     jobs:
-      - job: j4
+      - job: Change
         pool: server
         steps:
         - task: ServiceNow-DevOps-Server-Change-Acceleration@1
@@ -148,4 +148,32 @@ stages:
                 },
                 "setCloseCode": true
               }
- 
+  - stage: Deployment
+    displayName: Deployment
+    jobs:
+      - job: ProdDeployment
+        steps:
+          - task: Maven@3
+            inputs:
+              mavenPomFile: 'pom.xml'
+              publishJUnitResults: true
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              javaHomeOption: 'JDKVersion'
+              jdkVersionOption: '1.8'
+              mavenVersionOption: 'Default'
+              mavenOptions: '-Xmx3072m'
+              mavenAuthenticateFeed: false
+              effectivePomSkip: false
+              sonarQubeRunAnalysis: false
+          - task: Maven@4
+            inputs:
+              mavenPomFile: 'pom.xml'
+              publishJUnitResults: true
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              javaHomeOption: 'JDKVersion'
+              jdkVersionOption: '1.8'
+              mavenVersionOption: 'Default'
+              mavenOptions: '-Xmx3072m'
+              mavenAuthenticateFeed: false
+              effectivePomSkip: false
+              sonarQubeRunAnalysis: false
