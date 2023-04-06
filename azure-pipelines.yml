@@ -146,6 +146,6 @@ stages:
                   "cab_required": true,
                   "work_notes": "test work"
                 },
-                "setCloseCode": false
+                "setCloseCode": true
               }
  
